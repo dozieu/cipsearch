@@ -41,7 +41,8 @@ e.g. CM_SERVERS = [10.28.124.35, 10.28.124.36, 10.28.124.37,]
 
 Results
 =========
-You will be presented with a table, column names are below: 
+You will be presented with a table, column names are below:
+
 'DeviceName', ' Ipaddr', ' RegStatus',' RegStatusChg TimeStamp', ' LastActTimeStamp', 'Server', ' Descr'
 
 You may get results of IP search with more than one result or duplicate devicename results.
