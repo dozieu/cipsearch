@@ -37,7 +37,7 @@ e.g. CM_SERVERS = [10.28.124.35, 10.28.124.36, 10.28.124.37,]
 
     you will the be prompted with "Retrieving please wait...", After which the results will be Presented.
 
-    If you entered "yes" to "Create CSV file of results ?", a csv file will be created in same directory with filename "ipphones.csv"pi
+    If you entered "yes" to "Create CSV file of results ?", a csv file will be created in same directory with file name "ipphones.csv"
 
 Results
 =========
