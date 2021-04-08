@@ -1,13 +1,13 @@
 # cmipsearch
 Performs CUCM phone search based on ip address
 
-cmipsearch is a python script that retrieves table data of phones configured on your CUCM based on their ip addresses.
+cipsearch is a python script that retrieves table data of phones configured on your CUCM based on their ip addresses.
 the script presents option to retrieve only registered, unregistered or all phones, and has option to create a csv file of the output if selected.
 
 
 Overview
 ===============
-cmipsearch is used to access Cisco Unified Communication Manager (CUCM) and performs a phone query.
+cipsearch is used to access Cisco Unified Communication Manager (CUCM) and performs a phone query.
 
 It is able to concurrently access call manager servers within a single clucter and perform a CLI query for phones.
 The result of the query are parsed and then converted to panda dataframes on which the search is performed. The results are aggregated and then presented to user on screen. User can choose whether to display registered, non-registerd or all phones. User can also choose to create a csv file of the results wheh prompted.
