@@ -25,7 +25,7 @@ Hot to use
 Install packages on 'requirements.txt'
 
 On running the script a setup prompt will be presented, user can select 'yes' to setup or 'no' to use previously set credentials.
-For the first use, your answer will be 'yes' then enter username and password as prompted, enter list of the IP addresses of your call manager servers; this will be a string of the addresses seperated by  comma, there must be NO spaces as below.
+For the first use, your answer will be 'yes' then enter username and password as prompted, enter list of the IP addresses of your call manager servers; this will be a string of the addresses seperated by  comma, there must be NO spaces as in 
 e.g. 10.28.124.35,10.28.124.36,10.28.124.37
 
     Run script
