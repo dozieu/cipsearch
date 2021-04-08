@@ -24,18 +24,19 @@ Hot to use
 ==============
 Install packages on 'requirements.txt'
 
-Update the script's CM_SERVERS variable: this should be set to a list of the ip addresses of your servers that are running the call manager service and involved in phone registration. 
-e.g. CM_SERVERS = [10.28.124.35, 10.28.124.36, 10.28.124.37,]
+On running the script a setup prompt will be presented, user can select 'yes' to setup or 'no' to use previously set credentials.
+For the first use, your answer will be 'yes' then enter username and password as prompted, enter list of the IP addresses of your call manager servers; this will be a string of the addresses seperated by  comma, there must be NO spaces as below.
+e.g. 10.28.124.35,10.28.124.36,10.28.124.37
 
     Run script
 
-    Enter username and password when prompted: this is the admin account that has CLI access to the cluster of servers
+    Enter credentials:  use previously setup credentials or enter setup
 
     Enter IP address for search when prompted: the search is to find phone where IP address contains the string entered at prompt
 
     Answer 'yes' or 'no' to other prompt questions: questions partaining to presenting registered phones and creating csv file of results
 
-    you will the be prompted with "Retrieving please wait...", After which the results will be Presented.
+    you will the be prompted with "Retrieving please wait...", After which the results will be presented.
 
     If you entered "yes" to "Create CSV file of results ?", a csv file will be created in same directory with file name "ipphones.csv"
 
