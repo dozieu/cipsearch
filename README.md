@@ -1,4 +1,4 @@
-# cmipsearch
+# cipsearch
 Performs CUCM phone search based on ip address
 
 cipsearch is a python script that retrieves table data of phones configured on your CUCM based on their ip addresses.
