@@ -49,6 +49,6 @@ You may get results of IP search with more than one result or duplicate devicena
 This would be because phone had de-registered on one server and re-registred on another.
 You will be able to see the phone registration status and activity timestamp.
 
-phones will be listed in order from the most resent activity with a callmanger server so you will be able to tell on which server the phone was last registered.
+Phones will be listed in order from the most resent activity with a callmanger server so you will be able to tell on which server the phone was last registered;
 phone order is based on the ' RegStatusChg TimeStamp' and ' LastActTimeStamp' fields which are the phones registration status and last active time for the device. 
 
