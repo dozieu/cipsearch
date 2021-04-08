@@ -9,6 +9,7 @@ import pandas as pd
 from io import StringIO
 import concurrent.futures
 import tracemalloc
+import shelve
 
 '''Performs CUCM phone search based on ip address.
 The script presents option to retrieve only registered, unregistered or all phones, 
@@ -17,10 +18,36 @@ and has option to create a csv file of the output if selected.'''
 
 # ------------------------------------------------------------------------
 
-# List containing IP addresses of Call Manager servers that register phones
-CM_SERVERS = ['10.10.10.1', '10.10.10.2', '10.10.10.3']
-              
 CMD = 'show risdb query phone\n'
+
+def run_setup():    
+    # Will prompt user for credentials and for servers running call manager service
+    # enter servers seperated by comma "," no spaces e.g. 10.10.10.1,10.10.10.2,10.10.10.3
+    # saves and retrieves user credentials
+
+    st_setup = pyip.inputYesNo('\nEnter setup ? (yes or no): ')
+    setup_var = shelve.open('cli_var')
+
+    if st_setup == 'yes':
+        usern = input('username: ')
+        pphrase = getpass.getpass('password: ')
+        servers = pyip.inputStr("Enter server IP's seperated by comma ',' :")
+        servers = servers.split(',')        
+        setup_var['cli_user'] = usern
+        setup_var['cli_pw'] = pphrase
+        setup_var['servers'] = servers
+        setup_var.close()
+        
+    else:
+        if ('cli_user' in setup_var) and ('cli_pw' in setup_var):
+            print('Using saved credentials')
+            usern = setup_var['cli_user']
+            pphrase = setup_var['cli_pw']
+            servers = setup_var['servers']
+            setup_var.close()
+
+    return usern, pphrase, servers
+
 
 def access_cucm(host, username, password, cmd, port=22, prompt='admin:'):
     # Sends command to cucm cli and recieve cli output, returns cli output 
@@ -134,7 +161,7 @@ def ask_reg_status():    #choose phone status to display
     if ask == 'Unregistered':
         registered = ' unr'
     if ask == 'All':
-        registered = ''
+        registered = 'All'
     
     return registered
 
@@ -196,15 +223,15 @@ def pd_search(srv_dict, ip_addr, reg):
             # setting filter based on response
             if reg == ' reg': # this will also catch partially registered phones
                 filt = ((df[' Ipaddr'].str.contains(ip_addr, na=False)) & (df[' RegStatus'].str.contains('reg')))                
-            elif reg == ' unr':
+            if reg == ' unr':
                 filt = ((df[' Ipaddr'].str.contains(ip_addr, na=False)) & (df[' RegStatus'] == ' unr'))
-            else:
+            if reg == 'All':
                 filt = (df[' Ipaddr'].str.contains(ip_addr, na=False))
             df['Server'] = srv # setting 'Server' column with server name
             df_search = (df.loc[filt, ['DeviceName', ' Ipaddr', ' RegStatus',' RegStatusChg TimeStamp', ' LastActTimeStamp', 'Server', ' Descr']])
             df_agg = df_agg.append(df_search, ignore_index=True) # aggregate results of the search to dataframe
 
-		#print(df_agg)
+        #print(df_agg)
     except Exception as exc:
         print(f'Panda Error : {exc}')
 
@@ -220,16 +247,14 @@ if __name__ == '__main__':
     try:       
 
         print('\n---------- Running CUCM IP Searcher ----------\n')
+        
+        username, password, cm_servers = run_setup()
         print('Accessing..')
-        print(CM_SERVERS)
-        print()
-
-        username = input('username: ')
-        password = getpass.getpass('password: ')
+        print(cm_servers)
 
        
         # Get input for seacrhing and presenting search result
-        ip_search = concurrent_access(access_cucm, CM_SERVERS, username, password, CMD)    
+        ip_search = concurrent_access(access_cucm, cm_servers, username, password, CMD)    
         print() 
         srv_output = ip_search[0]
         ip_addr = ip_search[1]
