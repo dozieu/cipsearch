@@ -20,10 +20,11 @@ and has option to create a csv file of the output if selected.'''
 
 CMD = 'show risdb query phone\n'
 
-def run_setup():    
+def run_setup():
+    # For persistent data; saves and retrieves user credentials
     # Will prompt user for credentials and for servers running call manager service
     # enter servers seperated by comma "," no spaces e.g. 10.10.10.1,10.10.10.2,10.10.10.3
-    # saves and retrieves user credentials
+    
 
     st_setup = pyip.inputYesNo('\nEnter setup ? (yes or no): ')
     setup_var = shelve.open('cli_var')
