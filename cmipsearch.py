@@ -253,6 +253,10 @@ if __name__ == '__main__':
         print('Accessing..')
         print(cm_servers)
 
+        now = datetime.now().time() # Display current time
+        current_time = now.strftime("%H:%M:%S")
+        print("\nApprox. time of search =", current_time +'\n')
+
        
         # Get input for seacrhing and presenting search result
         ip_search = concurrent_access(access_cucm, cm_servers, username, password, CMD)    
