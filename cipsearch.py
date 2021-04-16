@@ -21,11 +21,10 @@ and has option to create a csv file of the output if selected.'''
 CMD = 'show risdb query phone\n'
 
 def run_setup():
-    # For persistent data; saves and retrieves user credentials
+    # for persistent data; saves and retrieves user credentials
     # Will prompt user for credentials and for servers running call manager service
     # enter servers seperated by comma "," no spaces e.g. 10.10.10.1,10.10.10.2,10.10.10.3
     
-
     st_setup = pyip.inputYesNo('\nEnter setup ? (yes or no): ')
     setup_var = shelve.open('cli_var')
 
@@ -87,6 +86,7 @@ def access_cucm(host, username, password, cmd, port=22, prompt='admin:'):
 def rmv_head_tail(data):
     ''' Removes the table title header and trailer info from cli results'''
     try:
+        data = str(data)
         datastr = data.split('\n')
         del datastr[0:6]
         del datastr[-6:]
@@ -294,5 +294,6 @@ if __name__ == '__main__':
         
     peak = (tracemalloc.get_traced_memory())[1]    
     print('Peak Memory usage: ' + str(peak) + ' bytes')
+    done = input('Hit Enter to Quit!')
     
    
