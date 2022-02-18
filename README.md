@@ -12,13 +12,13 @@ cipsearch is used to access Cisco Unified Communication Manager (CUCM) and perfo
 It is able to concurrently access call manager servers within a single clucter and perform a CLI query for phones.
 The result of the query are parsed and then converted to panda dataframes on which the search is performed. The results are aggregated and then presented to user on screen. User can choose whether to display registered, non-registerd or all phones. User can also choose to create a csv file of the results wheh prompted.
 
-script uses Paramiko to perform ssh access to the servers
+Script uses Paramiko to perform ssh access to the servers
 http://www.paramiko.org/
 
-the query results are converted to panda dataframe for further processing
+The query results are converted to panda dataframe for further processing
 https://pandas.pydata.org/
 
-
+Try the dockerized web gui version https://hub.docker.com/r/dozieu/collabtools-v01
 
 Hot to use
 ==============
