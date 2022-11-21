@@ -20,7 +20,7 @@ https://pandas.pydata.org/
 
 Try the dockerized web gui version https://hub.docker.com/r/dozieu/collabtools-v01
 
-Hot to use
+How to use
 ==============
 Install packages on 'requirements.txt'
 
